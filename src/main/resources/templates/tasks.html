@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Todo App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .text-strikethrough{
         text-decoration:line-through;
@@ -16,10 +17,10 @@
 <div class="container">
     <h1 class="mt-5 text-center">TODO APPLICATION</h1>
     <form action="/" method="post" class="row mt-3">
-        <div class="col-md-10">
+        <div class="col-md-11">
             <input class="form-control form-control-lg" type="text" name="title" placeholder="Add an new task" required>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
         </div>
     </form>
@@ -29,7 +30,12 @@
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <span th:classappend="${task.completed} ?'text-strikethrough'" th:text="${task.title}">Task Title</span>
                     <div>
-                        <a th:href="@{/{id}/toggle(id=${task.id})}" class="btn btn-outline-secondary btn-sm">Toggle</a>
+                        <a th:href="@{/{id}/toggle(id=${task.id})}" class="btn btn-outline-secondary btn-sm rounded-circle">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <a th:href="@{/{id}/delete(id=${task.id})}" class="btn btn-outline-danger btn-sm rounded-circle">
+                            <i class="fas fa-trash"></i>
+                        </a>
                     </div>
                 </div>
             </div>
