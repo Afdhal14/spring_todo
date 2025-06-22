@@ -5,6 +5,7 @@ import com.todo.todoapp.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class TaskController {
         List<Task> tasks = service.getTask();
         model.addAttribute("tasks",tasks);
         return "tasks";//Return the tasks to HTML which is named as tasks
+    }
+
+    @PostMapping
+    public String createTask(String title){
+        service.createTask(title);
+        return "redirect:/";
     }
 
 }
