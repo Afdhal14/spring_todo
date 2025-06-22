@@ -5,6 +5,7 @@ import com.todo.todoapp.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -24,5 +25,15 @@ public class TaskService {
         task.setTitle(title);
         task.setCompleted(false);
         repo.save(task);
+    }
+
+    public void deleteTask(Long id) {
+        repo.deleteById(id);
+    }
+
+    public void toggleTask(Long id) {
+            Task task = repo.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid task id"));
+            task.setCompleted(!task.isCompleted());
+            repo.save(task);
     }
 }
